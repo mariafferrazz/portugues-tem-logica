@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { useAuth } from '../context/AuthContext'
 
@@ -63,6 +64,12 @@ function Login() {
         >
           Entrar
         </button>
+        <Link
+  to="/forgot-password"
+  className="block text-center text-yellow-400 mt-6"
+>
+  Esqueci minha senha
+</Link>
 
       </form>
     </div>

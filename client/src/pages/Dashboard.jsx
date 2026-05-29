@@ -16,7 +16,8 @@ function Dashboard() {
 
       try {
 
-        const response = await api.get('/courses')
+        const response =
+          await api.get('/courses')
 
         setCourses(response.data)
 
@@ -29,6 +30,25 @@ function Dashboard() {
     fetchCourses()
 
   }, [])
+
+  async function handleBuyCourse(course) {
+
+    try {
+
+      const response =
+        await api.post('/payment/create', {
+          title: course.title,
+          price: course.price
+        })
+
+      window.location.href =
+        response.data.init_point
+
+    } catch (error) {
+
+      console.log(error)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -76,12 +96,33 @@ function Dashboard() {
                   {course.description}
                 </p>
 
-                <button
-                  onClick={() => navigate(`/courses/${course.id}`)}
-                  className="w-full mt-8 bg-yellow-400 text-slate-900 py-4 rounded-2xl font-black hover:scale-105 duration-300"
-                >
-                  Acessar Curso
-                </button>
+                <p className="text-yellow-400 text-3xl font-black mt-6">
+                  R$ {course.price}
+                </p>
+
+               {course.hasAccess ? (
+
+                  <button
+                    onClick={() =>
+                      handleBuyCourse(course)
+                    }
+                    className="w-full mt-8 bg-yellow-400 text-slate-900 py-4 rounded-2xl font-black hover:scale-105 duration-300"
+                  >
+                    Comprar Curso
+                  </button>
+
+                ) : (
+
+                  <button
+                    onClick={() =>
+                      navigate(`/courses/${course.id}`)
+                    }
+                    className="w-full mt-8 bg-yellow-400 text-slate-900 py-4 rounded-2xl font-black hover:scale-105 duration-300"
+                  >
+                    Acessar Curso
+                  </button>
+
+                )}
 
               </div>
 

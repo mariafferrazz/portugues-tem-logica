@@ -7,6 +7,7 @@ import courseRoutes from './routes/courseRoutes.js'
 import moduleRoutes from './routes/moduleRoutes.js'
 import lessonRoutes from './routes/lessonRoutes.js'
 import progressRoutes from './routes/progressRoutes.js'
+import paymentRoutes from './routes/paymentRoutes.js'
 
 dotenv.config()
 
@@ -20,6 +21,7 @@ app.use('/courses', courseRoutes)
 app.use('/modules', moduleRoutes)
 app.use('/lessons', lessonRoutes)
 app.use('/progress', progressRoutes)
+app.use('/payment', paymentRoutes)
 
 
 app.get('/', (req, res) => {

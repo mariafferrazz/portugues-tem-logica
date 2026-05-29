@@ -10,6 +10,7 @@ import Register from '../pages/Register'
 import Dashboard from '../pages/Dashboard'
 import CourseDetails from '../pages/CourseDetails'
 import Admin from '../pages/Admin'
+import ForgotPassword from '../pages/ForgotPassword'
 
 import ProtectedRoute from './ProtectedRoute'
 
@@ -29,6 +30,10 @@ function AppRoutes() {
           path="/login"
           element={<Login />}
         />
+        <Route
+  path="/forgot-password"
+  element={<ForgotPassword />}
+/>
 
         <Route
           path="/register"

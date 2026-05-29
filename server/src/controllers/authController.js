@@ -102,3 +102,35 @@ export async function login(req, res) {
     })
   }
 }
+export async function forgotPassword(req, res) {
+
+  try {
+
+    const { email } = req.body
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email
+      }
+    })
+
+    if (!user) {
+
+      return res.json({
+        message:
+          'Se o email existir, enviaremos recuperação.'
+      })
+    }
+
+    res.json({
+      message:
+        'Recuperação solicitada com sucesso'
+    })
+
+  } catch (error) {
+
+    res.status(500).json({
+      error: error.message
+    })
+  }
+}

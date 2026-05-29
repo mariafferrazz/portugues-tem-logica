@@ -59,25 +59,21 @@ function Hero() {
           </motion.div>
         </div>
 
-        <div className="relative hidden lg:flex justify-center">
-          <div className="w-[500px] h-[500px] rounded-[40px] bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 shadow-2xl flex items-center justify-center">
+<div className="relative hidden lg:flex justify-center">
+  <div className="w-[620px] h-[620px] rounded-[50px] bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 shadow-2xl flex items-center justify-center overflow-hidden">
 
-            <div className="text-center px-10">
-              <div className="text-yellow-400 text-7xl font-black">
-                PTL
-              </div>
+    {/* Glow */}
+    <div className="absolute inset-0 bg-yellow-400/10 blur-3xl"></div>
 
-              <p className="text-white text-2xl font-bold mt-6">
-                Plataforma de Ensino
-              </p>
+    {/* Logo */}
+    <img
+      src="client/src/assets/logo-portugues-tem-logica.png"
+      alt="Português Tem Lógica"
+      className="relative z-10 w-[122%] max-w-none object-contain translate-y-10 drop-shadow-2xl hover:scale-105 transition-transform duration-300"
+    />
 
-              <p className="text-slate-400 mt-4">
-                Cursos • Videoaulas • Exercícios • Lógica do Português
-              </p>
-            </div>
-
-          </div>
-        </div>
+  </div>
+</div>
 
       </div>
     </section>

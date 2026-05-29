@@ -4,9 +4,23 @@ export async function getCourses(req, res) {
 
   try {
 
-    const courses = await prisma.course.findMany()
+    const courses = await prisma.course.findMany({
+      include: {
+        enrollments: true
+      }
+    })
 
-    res.json(courses)
+    const formattedCourses = courses.map(course => ({
+
+      ...course,
+
+      hasAccess: course.enrollments.some(
+        enrollment =>
+          enrollment.userId === req.userId
+      )
+    }))
+
+    res.json(formattedCourses)
 
   } catch (error) {
 
@@ -45,6 +59,7 @@ export async function createCourse(req, res) {
     })
   }
 }
+
 export async function getCourseById(req, res) {
 
   try {
@@ -60,10 +75,10 @@ export async function getCourseById(req, res) {
         modules: {
           include: {
             lessons: {
-  include: {
-    progress: true
-  }
-}
+              include: {
+                progress: true
+              }
+            }
           }
         }
       }
